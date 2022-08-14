@@ -13,7 +13,10 @@
     "format": "npx prettier --wrie ."
   },
   "dependencies": {
+    "eslint-config-universe": "^11.1.0",
     "expo": "~45.0.0",
+    "expo-app-loading": "~2.0.0",
+    "expo-font": "~10.1.0",
     "expo-status-bar": "~1.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -34,6 +37,7 @@
     "prettier": "^2.7.1"
   },
   "private": true,
-
-  "eslintConfig": {"extends": "universe/native"}
+  "eslintConfig": {
+    "extends": "universe/native"
+  }
 }

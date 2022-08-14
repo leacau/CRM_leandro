@@ -24,7 +24,7 @@ function CustomModal({
       transparent={transparent}
     >
       <View style={styles.modalBack}>
-        <View style={styles.modalWin} he transparent>
+        <View style={styles.modalWin} transparent>
           <View style={styles.modalContentContainer}>
             <Text style={styles.modalTitle}>{modalTitle}</Text>
           </View>

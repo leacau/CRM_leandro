@@ -29,10 +29,13 @@ export const styles = StyleSheet.create({
 
   modalTitle: {
     fontSize: 16,
+    fontFamily: 'RedHat-Bold',
   },
   modalMessage: {
     fontSize: 16,
     marginBottom: 20,
+    fontFamily: 'RedHat-Light',
+
   },
 
   modalContentContainer: {
