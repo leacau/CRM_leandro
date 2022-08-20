@@ -5,13 +5,13 @@ import { Button, View } from 'react-native';
 
 import { styles } from './styles';
 
-function CustomButton({
+const CustomButton = ({
   titleButton,
   onPressButton,
   colorButton,
   disabledButton = false,
 
-}) {
+}) => {
   return (
     <View style={styles.modalButton}>
       <Button title={titleButton} onPress={onPressButton} color={colorButton} disabled={disabledButton} />

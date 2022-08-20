@@ -1,29 +1,33 @@
 import {
-  Button,
   Text,
-  View
+  View,
 } from 'react-native';
 
+import { CUSTOMERS } from '../../constants/data/customers'
 import React from 'react';
 import { styles } from './styles';
 
-const DetailScreen = ({item, onItemSelected}) => {
+const DetailScreen = ({ navigation, route }) => {
+
+  const { customerId } = route.params;
+
+
+  const customer = CUSTOMERS.find(customer => customer.id === customerId);
+  console.warn(customer);
+  
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
         <Text style={styles.titleDetail}>Apellido</Text>
-        <Text style={styles.name}>{item.apellido}</Text>
+        <Text style={styles.name}>{customer.lastname}</Text>
         <Text style={styles.titleDetail}>Nombre</Text>
-        <Text style={styles.name}>{item.nombre}</Text>
+        <Text style={styles.name}>{customer.name}</Text>
         <Text style={styles.titleDetail}>Teléfono</Text>
-        <Text style={styles.name}>{item.telefono}</Text>
+        <Text style={styles.name}>{customer.phone}</Text>
         <Text style={styles.titleDetail}>E-mail</Text>
-        <Text style={styles.name}>{item.mail}</Text>
+        <Text style={styles.name}>{customer.email}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Volver" onPress={() => onItemSelected('')} />
-      </View> 
-      </View>
+    </View>
   );
 }
 

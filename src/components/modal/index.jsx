@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import { styles } from './styles';
 
-function CustomModal({
+const CustomModal = ({
   children,
   modalTitle,
   modalMessage,
@@ -15,7 +15,7 @@ function CustomModal({
   animationType,
   onRequestClose = () => null,
   transparent = false,
-}) {
+}) => {
   return (
     <Modal
       animationType={animationType}

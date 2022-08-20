@@ -4,9 +4,9 @@ import { TextInput, View } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 
-function CustomInput({
+const CustomInput = ({
   placeholder, value, onChangeText, children, keyboardType = 'default',
-}) {
+}) => {
   return (
     <View style={styles.inputContainer}>
       <TextInput

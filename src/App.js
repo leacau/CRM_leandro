@@ -1,31 +1,14 @@
-import React, { useState } from 'react';
-
-import DetailScreen from './screens/detailScreen';
-import InitialScreen from './screens/initialScreen';
 import {
+  ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import { ScreenTitle } from './components';
+
+import AppNavigator from './navigation';
+import React from 'react';
 import { styles } from './styles';
 import { useFonts } from 'expo-font';
 
 export default function App() {
-  const [itemSelected, setItemSelected] = useState('');
-
-
-  const onItemSelected = (item) => {
-    setItemSelected(item);
-  }
-
-
-  
-  let content = <InitialScreen onItemSelected={onItemSelected} />;
-  let title = 'Contactos';
-  
-  if(itemSelected !== '') {
-    content = <DetailScreen item={itemSelected} onItemSelected={onItemSelected} />;
-    title = 'Detalle de contacto';
-  }
 
   const [loaded] = useFonts({
     'RedHat-Regular': require('../assets/fonts/RedHatDisplay-Regular.ttf'),
@@ -36,14 +19,12 @@ export default function App() {
   });
 
   if (!loaded) {
-    return null;
+    return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
-  
   return (
-    <SafeAreaView style={styles.container} >
-      <ScreenTitle title={title} />
-      {content}
+    <SafeAreaView style={styles.container}>
+      <AppNavigator />
     </SafeAreaView>
 
   );
