@@ -7,21 +7,20 @@ import {
 } from '../../components/index';
 import {
   FlatList,
-  Select,
   TouchableOpacity,
   View
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { filteredCustomers, selectCustomer } from '../../store/actions/customers.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AntDesign } from '@expo/vector-icons';
-import { CUSTOMERS } from '../../constants/data/customers'
 import { styles } from './styles';
 import { validateIsEmail } from '../../utils/function';
 
-const ContactScreen = ({ onItemSelected, navigation, route }) => {
-  const [itemList, setItemList] = useState([customerCategory]);
+const ContactScreen = ({ navigation }) => {
+  const [itemList, setItemList] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [itemSelected, setItemSelected] = useState({});
   const [modal2Visible, setModal2Visible] = useState(false);
   const [lastname, setLastname] = useState('');
   const [phone, setPhone] = useState('');
@@ -71,29 +70,31 @@ const ContactScreen = ({ onItemSelected, navigation, route }) => {
     setModalVisible(!modalVisible);
   };
 
-   const { categoryId } = route.params;
-    const customerCategory = CUSTOMERS.filter((item) => item.category === categoryId);
-    const onSelected = (item) => {
+  const dispatch = useDispatch();
+  const categorySelected = useSelector((state) => state.category.selected);
+  const customers = useSelector((state) => state.customers.filteredCustomers);
+  const onSelected = (item) => {
+      dispatch(selectCustomer(item.id));
       navigation.navigate('Detalle de contacto', { 
-        customerId: item.id,
-        name: item.name, })
+        name: item.name });
     };
+
+  useEffect(() => {
+    dispatch(filteredCustomers(categorySelected.id))
+  },[]);
+  
+
     const renderItem = ({ item }) => (
       <CustomerItem item={item} onSelected={onSelected} />
     );
     const keyExtractor = (item, index) => item.id.toString();
-    
-
-
-    
-
-
+      
   return (
 
     <View style={styles.container}>
      
     <FlatList
-    data={customerCategory}
+    data={customers}
     renderItem= {renderItem}
     keyExtractor={keyExtractor}
     />

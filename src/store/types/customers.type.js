@@ -1,0 +1,4 @@
+export const customersTypes = {
+    SELECT_CUSTOMER: "SELECT_CUSTOMER",
+    FILTERED_CUSTOMERS: "FILTERED_CUSTOMERS",
+  };

@@ -1,4 +1,4 @@
-import { ContactScreen, DetailScreen, LaunchScreen } from '../screens/index';
+import { DetailScreen, LaunchScreen, TasksScreen } from '../screens/index';
 
 import React from 'react';
 import { colors } from '../constants/colors';
@@ -7,10 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 
-const AplicationNavigator = () => {
+const TasksNavigator = () => {
   return (
     <Stack.Navigator 
-    initialRouteName='Inicio'
+    initialRouteName='Tareas'
     screenOptions= {{
       headerStyle: {
         backgroundColor: colors.primary,
@@ -22,15 +22,13 @@ const AplicationNavigator = () => {
         }}
     >
       <Stack.Screen 
-      name="Contactos" 
-      component={ContactScreen} 
-      options={( { route } ) => ({
-        headerTitle: route.params.name,
-      })}/>
+      name="Tareas" 
+      component={TasksScreen} 
+      />
       <Stack.Screen name="Detalle de contacto" component={DetailScreen} />
       <Stack.Screen name="Inicio" component={LaunchScreen} />
     </Stack.Navigator>
   );
 }
 
-export default AplicationNavigator;
+export default TasksNavigator;

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
-import { CATEGORIES } from '../../constants/data/categories';
 import { CategoryItem } from '../../components';
-import {
-  FlatList,
-} from 'react-native';
-import { styles } from './styles';
+import { FlatList } from 'react-native';
+import { selectCategory } from './../../store/actions/category.action';
 
 const LaunchScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category.categories);
+
   const onSelected = (item) => {
+    dispatch(selectCategory(item.id));
     navigation.navigate('Contactos', {
-      categoryId: item.id,
       name: item.name,
     });
-  };
 
+  };
   const renderItem = ({ item }) => (
     <CategoryItem item={item} onSelected={onSelected} />
   )
@@ -22,7 +23,7 @@ const LaunchScreen = ({ navigation }) => {
 
   return (
     <FlatList
-    data={CATEGORIES}
+    data={categories}
     renderItem= {renderItem}
     keyExtractor={keyExtractor}
     />

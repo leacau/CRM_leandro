@@ -4,7 +4,9 @@ import {
 } from 'react-native';
 
 import AppNavigator from './navigation';
+import { Provider } from "react-redux";
 import React from 'react';
+import store from "./store/index";
 import { styles } from './styles';
 import { useFonts } from 'expo-font';
 
@@ -23,9 +25,11 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <AppNavigator />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <AppNavigator />
+      </SafeAreaView>
+    </Provider>
 
   );
 }
