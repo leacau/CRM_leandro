@@ -126,5 +126,13 @@ export const styles = StyleSheet.create({
     color: '#7D8CC4',
     fontFamily: 'RedHat-Italic',
   },
+  tasksAlert:{
+    marginTop: 20,
+    textAlign: 'center',
+    fontSize: 18,
+    fontFamily: 'RedHat-Bold',
+    color: '#7D8CC4',
+    
+  }
 
 });

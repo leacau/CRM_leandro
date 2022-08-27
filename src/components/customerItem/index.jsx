@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 
-const CustomerItem = ({ item, onSelected }) => {
+const CustomerItem = ({ item, onSelected, children }) => {
 
     return (
         <View style={styles.container}>
@@ -18,6 +18,10 @@ const CustomerItem = ({ item, onSelected }) => {
         <View>
             <Text style={styles.mail}>{item.email}</Text>
         </View>
+        <View>
+            {children}
+        </View>
+        
         </TouchableOpacity>
         </View>
     );

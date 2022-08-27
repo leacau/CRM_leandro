@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 const DetailScreen = ({ navigation }) => {
 
   const customer = useSelector((state) => state.customers.selected);
-console.warn(customer);
 
   const nameTitle = customer.category === 1 && <Text style={styles.titleDetail}>Apellido</Text>;
   const nameDet = customer.category === 1 && <Text style={styles.name}>{customer.lastname}</Text>;
@@ -26,13 +25,14 @@ console.warn(customer);
     return new Date(a.dueDate) - new Date(b.dueDate);
   })
  
+ 
   const keyExtractor = (item, index) => item.id.toString();
 
   const tasksCompleted = tasks.filter((task) => task.status === 'Finalizada');
   const tasksPending = tasks.filter((task) => new Date (task.dueDate) >= new Date() && task.status !== 'Finalizada');
   const tasksExpired = tasks.filter((task) => new Date(task.dueDate) < new Date() && task.status === 'Pendiente');
 
-  console.warn(tasksCompleted);
+  
   const renderItem = ({ item }) => (
     <View style={styles.tasks}>
       <Text style={ styles.tasksName }>Vencimiento: {item.dueDate}</Text>

@@ -5,7 +5,6 @@ const { SELECT_TASK, FILTERED_TASKS } = tasksTypes;
 
 const initialState = {
     customers: CUSTOMERS,
-    tasks: CUSTOMERS.map(customer => customer.tasks),
     filteredTasks: [],
     selected: null,
 }
@@ -22,7 +21,7 @@ const tasksReducer = (state = initialState, action) => {
         case FILTERED_TASKS:
             return {
                     ...state,
-                    filteredTasks: state.tasks.filter(task => task.status !== '')
+                    filteredTasks: CUSTOMERS.map(customer => customer.tasks)
             }
 
         default:

@@ -54,7 +54,7 @@ export const CUSTOMERS = [
         description: 'Descripcion de la tarea 4',
         status: 'Pendiente',
         creationDate: '2022-08-19',
-        dueDate: '2022-09-27',
+        dueDate: '2022-08-27',
     },
     {
         id: 2.5,
