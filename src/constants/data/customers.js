@@ -13,7 +13,7 @@ export const CUSTOMERS = [
             description: 'Descripcion de la tarea 1',
             status: 'Pendiente',
             creationDate: '2020-07-20',
-            dueDate: '2022-08-01',
+            dueDate: '2022-10-01',
         }
     ]
 },
@@ -45,8 +45,8 @@ export const CUSTOMERS = [
         name: 'Tarea 3',
         description: 'Descripcion de la tarea 3',
         status: 'Pendiente',
-        creationDate: '2022-08-21',
-        dueDate: '2022-08-23',
+        creationDate: '2022-08-20',
+        dueDate: '2022-09-03',
     },
     {
         id: 2.4,
