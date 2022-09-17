@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  detailContainer:{
+  detailContainer: {
     justifyContent: 'center',
   },
   titleDetail: {
-      fontSize: 16,
-      color: 'black',
-      marginTop: 10,
-      marginLeft:5,
-      backgroundColor: '#B7CECE',
-    
+    fontSize: 16,
+    color: 'black',
+    marginTop: 10,
+    marginLeft: 5,
+    backgroundColor: '#B7CECE',
+
   },
   name: {
     fontSize: 18,
@@ -28,27 +29,35 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
 
-  tasks:{
+  tasks: {
     marginLeft: 20,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     marginTop: 13,
   },
 
-  tasksName:{
+  tasksName: {
     fontSize: 18,
     color: 'black',
     fontFamily: 'RedHat-Italic',
   },
 
-
-  titleDetailTasks:{
+  titleDetailTasks: {
     fontSize: 16,
     color: 'black',
     marginTop: 10,
-    marginLeft:5,
+    marginLeft: 5,
     backgroundColor: '#B7CECE',
     textAlign: 'center',
-  }
+  },
+  image: {
+    marginTop: 10,
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    alignSelf: 'center',
+    borderColor: colors.primary,
+    borderWidth: 1,
+  },
 
 });

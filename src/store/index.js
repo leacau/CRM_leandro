@@ -1,7 +1,7 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { categoryReducer, customerReducer, tasksReducer } from "./reducers/index";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { categoryReducer, customerReducer, tasksReducer } from './reducers/index';
 
-import thunk from "redux-thunk";
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   customers: customerReducer,

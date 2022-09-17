@@ -4,9 +4,9 @@ export const styles = StyleSheet.create({
   modalWin: {
     position: 'absolute',
     backgroundColor: '#fff',
-    top: 150,
-    right: 25,
-    width: 310,
+    top: 20,
+    right: 15,
+    width: 330,
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'black',
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   },
   modalMessage: {
     fontSize: 16,
-    marginBottom: 20,
+    marginBottom: 10,
     fontFamily: 'RedHat-Light',
 
   },
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
   modalContentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
 
 });

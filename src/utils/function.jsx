@@ -13,4 +13,3 @@ export function parseDateToEqual(date) {
 
   return new Date(year, month, day).toLocaleDateString();
 }
-
