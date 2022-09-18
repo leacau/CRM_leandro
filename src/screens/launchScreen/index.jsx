@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { CategoryItem } from "../../components";
 import { FlatList } from "react-native";
-import { selectCategory } from "../../store/actions/category.action";
+import { selectCategory } from "../../store/category.slice";
 
 function LaunchScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ function LaunchScreen({ navigation }) {
     dispatch(selectCategory(item.id));
     navigation.navigate("Contactos", {
       name: item.name,
+      id: item.id,
     });
   };
   const renderItem = ({ item }) => <CategoryItem item={item} onSelected={onSelected} />;

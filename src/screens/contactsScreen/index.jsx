@@ -1,37 +1,29 @@
 import { FlatList, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import {
-  filteredCustomers,
-  newCustomer,
-  selectCustomer,
-} from "../../store/actions/customers.action";
+import { newCustomer, selectCustomer } from "../../store/actions/customers.action";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AntDesign } from "@expo/vector-icons";
 import { CustomerItem } from "../../components/index";
 import { URL_GEOCODING } from "../../utils/maps";
+import { loadCustomers } from "../../store/customer.slice";
 import { styles } from "./styles";
 import { useRoute } from "@react-navigation/native";
 
 function ContactScreen({ navigation }) {
-  const [itemList, setItemList] = useState([]);
+  const dispatch = useDispatch();
+  const customers = useSelector((state) => state.customer.customers);
   const route = useRoute();
 
-  const newItemListBack = route?.params?.newItemList;
+  const customersOfCategory = customers.filter((customer) => customer.category === route.params.id);
 
-  useEffect(() => {
-    console.warn("newItemList", newItemListBack);
-    if (newItemListBack) {
-      setItemList(newItemListBack);
-    }
-  }, [newItemListBack]);
+  const onSelected2 = (item) => {
+    console.warn("item", item);
+    dispatch(selectCustomer(item.id));
+    navigation.navigate("Detalle de contacto", { name: item.name, customerId: item.id });
+  };
 
-  const dispatch = useDispatch();
-
-  const categorySelected = useSelector((state) => state.category.selected);
-  const customers = useSelector((state) => state.customers.filteredCustomers);
   const onSelected = (item) => {
-    dispatch(newCustomer([itemList]));
     dispatch(selectCustomer(item.id));
     navigation.navigate("Detalle de contacto", { name: item.name });
   };
@@ -53,25 +45,17 @@ function ContactScreen({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    dispatch(filteredCustomers(categorySelected.id));
-  }, []);
-
-  useEffect(() => {
-    setItemList(customers);
-  });
-
-  const renderItem = ({ item }) => <CustomerItem item={item} onSelected={onSelected} />;
+  const renderItem = ({ item }) => <CustomerItem item={item} onSelected={onSelected2} />;
   const keyExtractor = (item, index) => item.id.toString();
 
   return (
     <View style={styles.container}>
-      <FlatList data={itemList} renderItem={renderItem} keyExtractor={keyExtractor} />
+      <FlatList data={customersOfCategory} renderItem={renderItem} keyExtractor={keyExtractor} />
 
       <TouchableOpacity
         style={styles.buttonAdd}
         onPress={() => {
-          navigation.navigate("Nuevo contacto", { itemList });
+          navigation.navigate("Nuevo contacto");
         }}>
         <AntDesign name="adduser" size={40} color="black" />
       </TouchableOpacity>

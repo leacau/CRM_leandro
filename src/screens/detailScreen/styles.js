@@ -60,4 +60,15 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
   },
 
+  preview: {
+    marginTop: 10,
+    width: 170,
+    height: 170,
+    borderRadius: 20,
+    alignSelf: 'center',
+    borderColor: colors.primary,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+
 });

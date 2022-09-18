@@ -11,14 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { URL_GEOCODING } from "../../utils/maps";
-import { newCustomer } from "../../store/actions/customers.action";
+import { saveCustomer } from "../../store/customer.slice";
 import { styles } from "./styles";
 import { validateIsEmail } from "../../utils/function";
 
 function NewContactScreen({ navigation }) {
   const route = useRoute("");
-
+  const dispatch = useDispatch();
   const [tipo, setTipo] = useState("");
   const [itemList, setItemList] = useState([]);
   const [lastname, setLastname] = useState("");
@@ -28,15 +27,6 @@ function NewContactScreen({ navigation }) {
   const [image, setImage] = useState("");
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
-  const dispatch = useDispatch();
-  const newList = route?.params?.itemList;
-
-  useEffect(() => {
-    console.warn("newItemList", newList);
-    if (newList) {
-      setItemList(newList);
-    }
-  }, [newList]);
 
   const onChangeNombre = (text) => {
     setName(text);
@@ -51,40 +41,14 @@ function NewContactScreen({ navigation }) {
     setEmail(text);
   };
 
-  const addItem = () => {
-    setItemList([
-      ...newList,
-      {
-        id: itemList.length + Math.random() * Math.random(),
-        category: { tipo } === "Contacto" ? 2 : 1,
-        name,
-        lastname,
-        phone,
-        email,
-        image,
-        address,
-        coords: {
-          lat: location.lat,
-          long: location.long,
-        },
-        tasks: [
-          {
-            id: "",
-            name: "",
-            description: "",
-            status: "",
-            creationDate: "",
-            dueDate: "",
-          },
-        ],
-      },
-    ]);
-    dispatch(newCustomer([itemList]));
-    clearForm();
+  const onHandleSubmit = () => {
+    const category = { tipo } === "Contacto" ? 2 : 1;
+    dispatch(saveCustomer(category, name, lastname, phone, email, image, location));
+    navigation.navigate("Contactos", { id: category });
   };
 
   const clearForm = () => {
-    navigation.navigate("Contactos", { newItemList: itemList });
+    navigation.navigate("Contactos");
     setName("");
     setTipo("");
     setLastname("");
@@ -96,21 +60,8 @@ function NewContactScreen({ navigation }) {
     setImage(imageUrl);
   };
 
-  const geoCoding = async (coords) => {
-    const response = await fetch(URL_GEOCODING(coords.lat, coords.long));
-    if (!response.ok) throw new Error("No se ha podido conectar con el servidor");
-    try {
-      const data = await response.json();
-      if (!data.results) throw new Error("No se ha podido encontrar la dirección");
-
-      const address = data.results[0].formatted_address;
-      setAddress(address);
-      const { lat, lng } = data.results[0].geometry.location;
-      setLocation({ lat, long: lng });
-    } catch (error) {
-      console.log("error", error);
-      throw error;
-    }
+  const onHandleLocationSelect = (location) => {
+    setLocation(location);
   };
 
   return (
@@ -157,7 +108,7 @@ function NewContactScreen({ navigation }) {
         </Item>
 
         <ImageSelector onImage={onHandlerTakeImage} />
-        <LocationSelector onLocation={geoCoding} />
+        <LocationSelector onLocation={onHandleLocationSelect} />
 
         <View style={styles.modalButton}>
           <CustomButton
@@ -167,7 +118,7 @@ function NewContactScreen({ navigation }) {
           />
           <CustomButton
             titleButton="Ingresar"
-            onPressButton={() => addItem()}
+            onPressButton={onHandleSubmit}
             colorButton="#99EDCC"
             disabledButton={
               name == "" ||

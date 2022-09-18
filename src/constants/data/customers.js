@@ -1,9 +1,13 @@
 export const CUSTOMERS = [
   {
-    id: 1,
+    id: 70,
     category: 1,
     name: 'Leandro',
     lastname: 'Gonzalez',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654321',
     email: 'ñlaksd@dnkd.com',
     image: 'https://picsum.photos/200',
@@ -19,10 +23,14 @@ export const CUSTOMERS = [
     ],
   },
   {
-    id: 2,
+    id: 71,
     category: 1,
     name: 'Juan',
     lastname: 'Perez',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654333',
     email: 'gtght@sds.com',
     image: 'https://picsum.photos/200',
@@ -77,20 +85,28 @@ export const CUSTOMERS = [
 
   },
   {
-    id: 3,
+    id: 72,
     category: 1,
     name: 'Pedro',
     lastname: 'Gonzalez',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654344',
     email: 'eirieh@jdojsd.com',
     image: 'https://picsum.photos/200',
     tasks: '',
   },
   {
-    id: 4,
+    id: 73,
     category: 2,
     name: 'Industria 1',
     lastname: '',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654355',
     email: 'sdg@fdgfg.com',
     image: 'https://picsum.photos/200',
@@ -104,10 +120,14 @@ export const CUSTOMERS = [
     }],
   },
   {
-    id: 5,
+    id: 74,
     category: 2,
     name: 'Industria 2',
     lastname: '',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654366',
     email: 'cualquiera@mail.com',
     image: 'https://picsum.photos/200',
@@ -130,10 +150,14 @@ export const CUSTOMERS = [
     ],
   },
   {
-    id: 6,
+    id: 75,
     category: 2,
     name: 'Industria 3',
     lastname: '',
+    location: {
+      lat: 37.4215452,
+      long: -122.0837541,
+    },
     phone: '+569 987654377',
     email: 'comono@ih.com',
     image: 'https://picsum.photos/200',

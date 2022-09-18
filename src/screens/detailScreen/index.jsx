@@ -1,11 +1,19 @@
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 
+import { MapPreview } from "../../components/index";
 import React from "react";
 import { styles } from "./styles";
 import { useSelector } from "react-redux";
 
-function DetailScreen({ navigation }) {
-  const customer = useSelector((state) => state.customers.selected);
+function DetailScreen({ navigation, route }) {
+  const { customerId } = route.params;
+
+  const customer = useSelector((state) =>
+    state.customer.customers.find((customer) => customer.id === customerId)
+  );
+  console.warn(customer);
+
+  console.warn("customer", customer);
 
   const nameTitle = customer.category === 1 && <Text style={styles.titleDetail}>Apellido</Text>;
   const nameDet = customer.category === 1 && <Text style={styles.name}>{customer.lastname}</Text>;
@@ -49,6 +57,11 @@ function DetailScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: customer.image }} />
+      <MapPreview
+        location={{ lat: customer.location.lat, long: customer.location.long }}
+        style={styles.preview}>
+        <Text style={styles.text}>No has seleccionado una ubicación</Text>
+      </MapPreview>
       <ScrollView>
         <View style={styles.detailContainer}>
           {nameTitle}
