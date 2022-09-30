@@ -4,7 +4,7 @@ import { Alert, Button, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-import { MapPreview } from "../index";
+import MapPreview from "../mapPreview";
 import { colors } from "../../constants/colors";
 import { styles } from "./styles";
 

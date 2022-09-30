@@ -32,11 +32,9 @@ export const insertCustomer = (
         'INSERT INTO customers_sql (category, name, lastname, phone, email, address, image, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?);',
         [category, name, lastname, phone, email, address, image, JSON.stringify(location)],
         (_, result) => {
-          console.warn('INsERT', result);
           resolve(result);
         },
         (_, err) => {
-          console.warn('INsERT', err);
           reject(err);
         },
       );

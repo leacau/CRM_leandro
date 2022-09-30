@@ -1,19 +1,32 @@
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 import { MapPreview } from "../../components/index";
-import React from "react";
+import { database } from "../../constants/firebase/index";
 import { styles } from "./styles";
-import { useSelector } from "react-redux";
 
 function DetailScreen({ navigation, route }) {
   const { customerId } = route.params;
+  const [customer, setCustomer] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const customer = useSelector((state) =>
-    state.customer.customers.find((customer) => customer.id === customerId)
-  );
-  console.warn(customer);
+  async function getCustomer() {
+    setLoading(true);
+    const docRef = doc(database, "customers", customerId);
+    await getDoc(docRef).then((doc) => {
+      if (doc.exists()) {
+        setCustomer({ ...doc.data(), id: doc.id });
+      } else {
+        console.log("No such document!");
+      }
+    });
+    setLoading(false);
+  }
 
-  console.warn("customer", customer);
+  useEffect(() => {
+    getCustomer();
+  }, []);
 
   const nameTitle = customer.category === 1 && <Text style={styles.titleDetail}>Apellido</Text>;
   const nameDet = customer.category === 1 && <Text style={styles.name}>{customer.lastname}</Text>;
@@ -53,6 +66,10 @@ function DetailScreen({ navigation, route }) {
       </Text>
     </View>
   );
+
+  if (loading) {
+    return <Text>Cargando...</Text>;
+  }
 
   return (
     <View style={styles.container}>

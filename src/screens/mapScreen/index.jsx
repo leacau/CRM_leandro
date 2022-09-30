@@ -1,8 +1,8 @@
 import MapView, { Marker } from "react-native-maps";
 import React, { useLayoutEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 import { colors } from "../../constants/colors";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";

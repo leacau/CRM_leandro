@@ -4,8 +4,9 @@ import customerReducer from './customer.slice';
 
 export const store = configureStore({
   reducer: {
-    customer: customerReducer,
     category: categoryReducer,
+    customer: customerReducer,
+
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,
